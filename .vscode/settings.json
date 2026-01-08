@@ -1,12 +1,17 @@
 {
     "sqltools.connections": [
         {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
             "ssh": "Disabled",
             "previewLimit": 50,
             "server": "localhost",
             "driver": "PostgreSQL",
-            "name": "app8",
-            "connectString": "postgres://postgres:6778@localhost:5432/postgres"
+            "name": "app9 railway",
+            "connectString": "postgresql://postgres:fpXvkOiLoEMAVgqBnaMHtCWEemTQWzXv@nozomi.proxy.rlwy.net:21347/railway"
         }
     ]
 }

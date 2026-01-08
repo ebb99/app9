@@ -4,31 +4,37 @@ const bcrypt = require("bcrypt");
 
 const pool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_URL.includes("localhost")
-        ? false
-        : { rejectUnauthorized: false }
+    ssl: { rejectUnauthorized: false } // Railway braucht SSL
 });
 
 async function setAdmin() {
-    const name = "admin";
-    const password = "1234"; // Sicheres Passwort wählen
+    const name = process.env.ADMIN_NAME || "admin";
+    const password = process.env.ADMIN_PASSWORD;
     const role = "admin";
 
-    const hash = await bcrypt.hash(password, 10);
+    if (!password) {
+        throw new Error("❌ ADMIN_PASSWORD ist nicht gesetzt");
+    }
+
+    const hash = await bcrypt.hash(password, 12);
 
     await pool.query(
         `
         INSERT INTO users (name, password, role)
         VALUES ($1, $2, $3)
         ON CONFLICT (name)
-        DO UPDATE SET password = EXCLUDED.password,
-                     role = EXCLUDED.role
+        DO UPDATE SET
+            password = EXCLUDED.password,
+            role = EXCLUDED.role
         `,
         [name, hash, role]
     );
 
-    console.log("✅ Admin-Passwort gesetzt / aktualisiert");
-    process.exit();
+    console.log("✅ Admin auf Railway gesetzt / aktualisiert");
+    process.exit(0);
 }
 
-setAdmin().catch(console.error);
+setAdmin().catch(err => {
+    console.error("❌ Fehler:", err.message);
+    process.exit(1);
+});
