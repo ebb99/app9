@@ -35,15 +35,16 @@
         }
 
         button {
-            margin-top: 16px;
-            background: #007bff;
+            display: inline-block;
+            width: auto;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0011ff;
             color: white;
             border: none;
-            border-radius: 6px;
-        }
 
-        button:active {
-            background: #0056b3;
+
+            border-radius: 6px;
         }
 
         #meldung {
@@ -73,7 +74,8 @@
         .tipp {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 6px 6px ;
+         
             border-bottom: 1px solid #eee;
         }
 
@@ -92,4 +94,9 @@
             padding: 6px;
             text-align: center;
         }
-   
+        #top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+         align-items: center;
+        }
