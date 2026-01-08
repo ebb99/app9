@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "app8",
+            "connectString": "postgres://postgres:6778@localhost:5432/postgres"
+        }
+    ]
+}
