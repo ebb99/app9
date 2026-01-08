@@ -116,25 +116,7 @@ cron.schedule("* * * * *", async () => {
 });
 
 
-function berechnePunkte(tipp, spiel) {
-    if (tipp.heimtipp === spiel.heimtore &&
-        tipp.gasttipp === spiel.gasttore) {
-        return 3;
-    }
 
-    const tippDiff = tipp.heimtipp - tipp.gasttipp;
-    const spielDiff = spiel.heimtore - spiel.gasttore;
-
-    if (
-        (tippDiff > 0 && spielDiff > 0) ||
-        (tippDiff < 0 && spielDiff < 0) ||
-        (tippDiff === 0 && spielDiff === 0)
-    ) {
-        return 1;
-    }
-
-    return 0;
-}
 
 async function werteSpielAus(spielId) {
     const spielRes = await pool.query(

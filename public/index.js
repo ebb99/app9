@@ -26,7 +26,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     });
 
     const session = await sessionRes.json();
-
+    //const user = session.user.name;
+    //console.log("Eingeloggt als:", session.user);
     if (!session.user) {
         document.getElementById("loginError").textContent =
             "Session-Fehler";

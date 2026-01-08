@@ -11,7 +11,7 @@ const pool = new pg.Pool({
 
 async function setAdmin() {
     const name = "admin";
-    const password = "admin123";
+    const password = "1234"; // Sicheres Passwort wählen
     const role = "admin";
 
     const hash = await bcrypt.hash(password, 10);
