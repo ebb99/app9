@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         await checkSession("tipper");
         await ladeSpiele();
         await name_ermitteln();
-        $("tippenBtn").addEventListener("click", tippen);       //$("btnTippen").addEventListener("click", tippen);
+        $("tippenBtn").addEventListener("click", tippen);  
+        $("logoutBtn")?.addEventListener("click", logout);     
 
         console.log("✅ Tipper Dashboard bereit");
     } catch (err) {
