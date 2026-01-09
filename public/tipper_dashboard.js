@@ -44,14 +44,14 @@ async function tippen() {
    alert("Hier geht's zum Tippen!");
 }
 
-/*
-document.getElementById("tippenBtn").addEventListener("click", async (e) => {
-    e.preventDefault();
+// Logout
+// ===============================
+async function logout() {
+    await api("/api/logout", { method: "POST" });
+    location.href = "/";
+}
 
-    alert("Hier geht's zum Tippen!");
-});
 
-*/
 // ===============================
 // Spiele
 // ===============================
