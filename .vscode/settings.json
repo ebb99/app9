@@ -3,15 +3,18 @@
         {
             "pgOptions": {
                 "ssl": {
-                    "rejectUnauthorized": true
+                    "rejectUnauthorized": false
                 }
             },
             "ssh": "Disabled",
             "previewLimit": 50,
+            "sshOptions": {
+                "port": 22
+            },
             "server": "localhost",
             "driver": "PostgreSQL",
             "name": "app9 railway",
-            "connectString": "postgresql://postgres:fpXvkOiLoEMAVgqBnaMHtCWEemTQWzXv@nozomi.proxy.rlwy.net:21347/railway"
+            "connectString": "postgresql://postgres:majLxoQOApvUhgrEILnhOgZaIZFFerxa@maglev.proxy.rlwy.net:54779/railway"
         }
     ]
 }
