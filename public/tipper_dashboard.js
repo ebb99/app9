@@ -28,8 +28,9 @@ function $(id) {
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         await checkSession("tipper");
-        await ladeSpiele();
+        //await ladeSpiele();
         await name_ermitteln();
+        await ladeGeplanteSpiele();
         $("tippenBtn").addEventListener("click", tippen);  
         $("logoutBtn")?.addEventListener("click", logout);     
 
@@ -56,6 +57,7 @@ async function logout() {
 // ===============================
 // Spiele
 // ===============================
+/*
 async function ladeSpiele() {
     const spiele = await api("/api/spiele");
     $("spieleSelect").innerHTML = `<option value="">Bitte wählen …</option>`;
@@ -69,11 +71,93 @@ async function ladeSpiele() {
 })}
 
 
-
 ${s.heimverein} – ${s.gastverein}`;
             $("spieleSelect").appendChild(new Option(text, s.id));
         });
+
+
+
+
+
+
+        const tbody = document.getElementById("SpieleTabelle");
+        tbody.innerHTML = "";
+
+        spiele.forEach(s => {
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${s.heimverein}</td>
+                <td>${s.gastverein}</td>
+                <td>${new Date(s.anstoss).toLocaleString("de-DE", {
+                    dateStyle: "short",
+                    timeStyle: "short"  
+                })}</td>
+                <td>${s.heimtore} : ${s.gasttore}</td>
+                <td>${s.statuswort}</td>
+                            `;
+        });
+       
 }
+*/
+// ===============================
+// Geplante Spiele laden
+// ===============================
+async function ladeGeplanteSpiele() {
+    try {
+        const spiele = await api("/api/spiele");
+        const tbody = $("spieleBody");
+        tbody.innerHTML = "";
+
+        // nur geplante Spiele
+        const geplant = spiele.filter(s => s.statuswort === "geplant");
+
+        if (geplant.length === 0) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td colspan="4">Keine geplanten Spiele</td>`;
+            tbody.appendChild(tr);
+            return;
+        }
+
+        geplant.forEach(s => {
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${new Date(s.anstoss).toLocaleString("de-DE", {
+                    dateStyle: "short",
+                    timeStyle: "short"
+                })}</td>
+                <td>${s.heimverein}</td>
+                <td>${s.gastverein}</td>
+                <td>${s.statuswort}</td>
+            `;
+
+            tbody.appendChild(tr);
+        });
+
+    } catch (err) {
+        console.error("❌ Spiele laden fehlgeschlagen:", err);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+ 
+
+
 
 async function name_ermitteln(requiredRole = null) {
     const res = await fetch("/api/session", {
@@ -97,8 +181,6 @@ async function name_ermitteln(requiredRole = null) {
     $("benutzername").innerHTML = data.user.name;
     return data.user;
 }
-
-
 
 
 
