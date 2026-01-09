@@ -30,8 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         await checkSession("tipper");
         await ladeSpiele();
         await name_ermitteln();
-
-       // $("btnTippen").addEventListener("click", tippSpeichern);
+        $("tippenBtn").addEventListener("click", tippen);       //$("btnTippen").addEventListener("click", tippen);
 
         console.log("✅ Tipper Dashboard bereit");
     } catch (err) {
@@ -40,6 +39,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+tippen;
+async function tippen() {
+   alert("Hier geht's zum Tippen!");
+}
+
+/*
+document.getElementById("tippenBtn").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    alert("Hier geht's zum Tippen!");
+});
+
+*/
 // ===============================
 // Spiele
 // ===============================
