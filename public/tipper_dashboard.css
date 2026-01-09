@@ -100,7 +100,13 @@
             justify-content: space-evenly;
             align-items: center;
         }
-        .ueberschrift,h2 {
-            text-align: left;
-            margin-top: 20px;
+        .ueberschrift {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start; /* Alle Elemente starten ganz links */
+            gap: 20px;                   /* Definierter Abstand zwischen den Elementen */
+            align-items: center;
         }
+        .ueberschrift,button {
+            margin-bottom: -10px;
+        }   
